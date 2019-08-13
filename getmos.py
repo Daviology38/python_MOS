@@ -125,7 +125,7 @@ def GFSMOS(station):
     x = re.sub("\s+", ",", data[0]).split(',')
     
     #Get the index of the place that we want
-    string = 'KLWM'station
+    string = station
     ind = x.index(string)
     
     #Make new list starting from our list
