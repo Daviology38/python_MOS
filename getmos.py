@@ -21,20 +21,20 @@ Created on Tue Aug  6 10:50:49 2019
 # in a future update
 ##############################################################################
 
-from urllib2 import urlopen, HTTPError
+import requests
 import pandas as pd
 import numpy as np
 import re
-import urllib2
+
 
 
 
 def NAMMOS(station):
     #Open the data file
-    response = urllib2.urlopen('https://www.nws.noaa.gov/mdl/forecast/text/nammet.txt').read()
-    
+    response = requests.get('https://www.nws.noaa.gov/mdl/forecast/text/nammet.txt')
     #Put data into list
-    data = response.split("/n")
+    data = response.text
+    data = data.split("/n")
     
     #Remove all white spaces and replace with commas then split by comma
     x = re.sub("\s+", ",", data[0]).split(',')
@@ -81,7 +81,7 @@ def NAMMOS(station):
         days = [datalist[inddt+2],datalist[inddt+2], datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4], datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6]]
     elif(hour == 12):
         days = [datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+4]+datalist[inddt+5],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1]]
-    elif(hour == 06):
+    elif(hour == 6):
         days = [datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1]]
     else:
         days = [datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+4]+datalist[inddt+5],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1]]
@@ -116,10 +116,11 @@ def NAMMOS(station):
 
 def GFSMOS(station):
     #Open the data file
-    response = urllib2.urlopen('https://www.nws.noaa.gov/mdl/forecast/text/avnmav.txt').read()
+    response = requests.get('https://www.nws.noaa.gov/mdl/forecast/text/avnmav.txt')
     
     #Put data into list
-    data = response.split("/n")
+    data = response.text
+    data = data.split("/n")
     
     #Remove all white spaces and replace with commas then split by comma
     x = re.sub("\s+", ",", data[0]).split(',')
@@ -166,7 +167,7 @@ def GFSMOS(station):
         days = [datalist[inddt+2],datalist[inddt+2], datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4], datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6]]
     elif(hour == 12):
         days = [datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+4]+datalist[inddt+5],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1]]
-    elif(hour == 06):
+    elif(hour == 6):
         days = [datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1]]
     else:
         days = [datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+4]+datalist[inddt+5],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1]]
