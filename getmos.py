@@ -75,17 +75,69 @@ def NAMMOS(station):
     indobv = datalist.index('OBV')
     inddt = datalist.index('DT')
     
-    #Get the first hour and then put the dates for each hour in. We will be putting any dates beyond day 3 under the header for day 3
+    #Get the first hour and then put the dates for each hour in.
     hour = int(datalist[indhr+1])
-    if(hour == 18):
-        days = [datalist[inddt+2],datalist[inddt+2], datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4], datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6]]
     
-    elif(hour == 12):
-        days = [datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+4]+datalist[inddt+5],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1]]
-    elif(hour == 6):
-        days = [datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1]]
+    #Now check to make sure the last date and month are correct for longer times
+    if(hour == 18):
+        month = datalist[inddt+4]
+        month = month[1:]
+        lastday = datalist[inddt+5]
+        lastday = int(lastday)
     else:
-        days = [datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+4]+datalist[inddt+5],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1]]
+        month = datalist[inddt+3]
+        month = month[1:]
+        lastday = datalist[inddt+6]
+        lastday = int(lastday)
+    if(month == 'JAN' and (lastday + 1) == 32):
+        month = 'FEB'
+        lastday = '01'
+    elif(month == 'FEB' and (lastday + 1) == 29):
+        month = 'MAR'
+        lastday = '01'
+    elif(month == 'MAR' and (lastday + 1) == 32):
+        month = 'APR'
+        lastday = '01'
+    elif(month == 'APR' and (lastday + 1) == 31):
+        month = 'MAY'
+        lastday = '01'
+    elif(month == 'MAY' and (lastday + 1) == 32):
+        month = 'JUN'
+        lastday = '01'
+    elif(month == 'JUN' and (lastday + 1) == 31):
+        month = 'JUL'
+        lastday = '01'
+    elif(month == 'JUL' and (lastday + 1) == 32):
+        month = 'AUG'
+        lastday = '01'
+    elif(month == 'AUG' and (lastday + 1) == 32):
+        month = 'SEP'
+        lastday = '01'
+    elif(month == 'SEP' and (lastday + 1) == 31):
+        month = 'OCT'
+        lastday = '01'
+    elif(month == 'OCT' and (lastday + 1) == 32):
+        month = 'NOV'
+        lastday = '01'
+    elif(month == 'NOV' and (lastday + 1) == 31):
+        month = 'DEC'
+        lastday = '01'
+    elif(month == 'DEC' and (lastday + 1) == 32):
+        month = 'JAN'
+        lastday = '01'
+    else:
+        month = month
+        lastday = str(lastday+1)
+    
+    
+    if(hour == 18):
+        days = [datalist[inddt+2],datalist[inddt+2], datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4], datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],lastday +'/'+ month,lastday +'/'+ month,lastday +'/'+ month]   
+    elif(hour == 12):
+        days = [datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+4]+datalist[inddt+5],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],lastday +'/'+ month,lastday +'/'+ month,lastday +'/'+ month]
+    elif(hour == 6):
+        days = [datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],lastday +'/'+ month,lastday +'/'+ month]
+    else:
+        days = [datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+4]+datalist[inddt+5],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],lastday +'/'+ month]
      
     #Put everything into a dictionary
     dictionary = {
@@ -272,14 +324,67 @@ def GFSMOS(station):
     
     #Get the first hour and then put the dates for each hour in. We will be putting any dates beyond day 3 under the header for day 3
     hour = int(datalist[indhr+1])
+    
+    #Now check to make sure the last date and month are correct for longer times
     if(hour == 18):
-        days = [datalist[inddt+2],datalist[inddt+2], datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4], datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6]]
-    elif(hour == 12):
-        days = [datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+4]+datalist[inddt+5],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1]]
-    elif(hour == 6):
-        days = [datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1]]
+        month = datalist[inddt+4]
+        month = month[1:]
+        lastday = datalist[inddt+5]
+        lastday = int(lastday)
     else:
-        days = [datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+4]+datalist[inddt+5],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1]]
+        month = datalist[inddt+3]
+        month = month[1:]
+        lastday = datalist[inddt+6]
+        lastday = int(lastday)
+    if(month == 'JAN' and (lastday + 1) == 32):
+        month = 'FEB'
+        lastday = '01'
+    elif(month == 'FEB' and (lastday + 1) == 29):
+        month = 'MAR'
+        lastday = '01'
+    elif(month == 'MAR' and (lastday + 1) == 32):
+        month = 'APR'
+        lastday = '01'
+    elif(month == 'APR' and (lastday + 1) == 31):
+        month = 'MAY'
+        lastday = '01'
+    elif(month == 'MAY' and (lastday + 1) == 32):
+        month = 'JUN'
+        lastday = '01'
+    elif(month == 'JUN' and (lastday + 1) == 31):
+        month = 'JUL'
+        lastday = '01'
+    elif(month == 'JUL' and (lastday + 1) == 32):
+        month = 'AUG'
+        lastday = '01'
+    elif(month == 'AUG' and (lastday + 1) == 32):
+        month = 'SEP'
+        lastday = '01'
+    elif(month == 'SEP' and (lastday + 1) == 31):
+        month = 'OCT'
+        lastday = '01'
+    elif(month == 'OCT' and (lastday + 1) == 32):
+        month = 'NOV'
+        lastday = '01'
+    elif(month == 'NOV' and (lastday + 1) == 31):
+        month = 'DEC'
+        lastday = '01'
+    elif(month == 'DEC' and (lastday + 1) == 32):
+        month = 'JAN'
+        lastday = '01'
+    else:
+        month = month
+        lastday = str(lastday+1)
+    
+    
+    if(hour == 18):
+        days = [datalist[inddt+2],datalist[inddt+2], datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4], datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],lastday +'/'+ month,lastday +'/'+ month,lastday +'/'+ month]   
+    elif(hour == 12):
+        days = [datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+4]+datalist[inddt+5],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],lastday +'/'+ month,lastday +'/'+ month,lastday +'/'+ month]
+    elif(hour == 6):
+        days = [datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],lastday +'/'+ month,lastday +'/'+ month]
+    else:
+        days = [datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+4]+datalist[inddt+5],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],lastday +'/'+ month]
      
     #Put everything into a     return dfdictionary
     dictionary = {
