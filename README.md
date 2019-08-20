@@ -10,7 +10,4 @@ function call:
 df = NAMMOS(stationcode) ex: 'KLWM', 'KBOS' 
 
 
-This only is for the short term MOS. The values for Q06, P06, P12, Q12, X/N
-are not properly spaced out to match with their appropriate times at this 
-point so adjustments need to be made when using said data. This will be added
-in a future update
+This only is for the short term MOS, long term MOS will be added in a future update.
