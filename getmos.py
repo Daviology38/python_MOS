@@ -79,6 +79,7 @@ def NAMMOS(station):
     hour = int(datalist[indhr+1])
     if(hour == 18):
         days = [datalist[inddt+2],datalist[inddt+2], datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4],datalist[inddt+3]+datalist[inddt+4], datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6],datalist[inddt+5]+datalist[inddt+6]]
+    
     elif(hour == 12):
         days = [datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3],datalist[inddt+2] + datalist[inddt+3], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5], datalist[inddt+4]+datalist[inddt+5],datalist[inddt+4]+datalist[inddt+5],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1],datalist[inddt+6]+datalist[inddt+1]]
     elif(hour == 6):
@@ -108,6 +109,114 @@ def NAMMOS(station):
     
     #Make a pandas dataframe from the dictionary and append the 
     df = pd.DataFrame.from_dict(dictionary, orient='index')
+    temp = df[0]['X/N']
+    temp2 = df[1]['X/N']
+    temp3 = df[2]['X/N']
+    temp4 = df[3]['X/N']
+    temp5 = df[4]['X/N']
+    df[6]['X/N'] = temp
+    df[10]['X/N'] = temp2
+    df[14]['X/N'] = temp3
+    df[18]['X/N'] = temp4
+    df[20]['X/N'] = temp5
+    df[0]['X/N'] = None
+    df[1]['X/N'] = None
+    df[2]['X/N'] = None
+    df[3]['X/N'] = None
+    df[4]['X/N'] = None
+
+    temp = df[0]['P06']
+    temp2 = df[1]['P06']
+    temp3 = df[2]['P06']
+    temp4 = df[3]['P06']
+    temp5 = df[4]['P06']
+    temp6 = df[5]['P06']
+    temp7 = df[6]['P06']
+    temp8 = df[7]['P06']
+    temp9 = df[8]['P06']
+    temp10 = df[9]['P06']
+    temp11 = df[10]['P06']    
+    df[2]['P06'] = temp
+    df[4]['P06'] = temp2 
+    df[6]['P06'] = temp3
+    df[8]['P06'] = temp4
+    df[10]['P06'] = temp5
+    df[12]['P06'] = temp6
+    df[14]['P06'] = temp7
+    df[16]['P06'] = temp8
+    df[18]['P06'] = temp9
+    df[19]['P06'] = temp10
+    df[20]['P06'] = temp11
+    df[0]['P06'] = None
+    df[1]['P06'] = None
+    df[3]['P06'] = None
+    df[5]['P06'] = None
+    df[7]['P06'] = None
+    df[9]['P06'] = None
+    df[11]['P06'] = None
+    
+    temp = df[0]['Q06']
+    temp2 = df[1]['Q06']
+    temp3 = df[2]['Q06']
+    temp4 = df[3]['Q06']
+    temp5 = df[4]['Q06']
+    temp6 = df[5]['Q06']
+    temp7 = df[6]['Q06']
+    temp8 = df[7]['Q06']
+    temp9 = df[8]['Q06']
+    temp10 = df[9]['Q06']
+    temp11 = df[10]['Q06']    
+    df[2]['Q06'] = temp
+    df[4]['Q06'] = temp2 
+    df[6]['Q06'] = temp3
+    df[8]['Q06'] = temp4
+    df[10]['Q06'] = temp5
+    df[12]['Q06'] = temp6
+    df[14]['Q06'] = temp7
+    df[16]['Q06'] = temp8
+    df[18]['Q06'] = temp9
+    df[19]['Q06'] = temp10
+    df[20]['Q06'] = temp11
+    df[0]['Q06'] = None
+    df[1]['Q06'] = None
+    df[3]['Q06'] = None
+    df[5]['Q06'] = None
+    df[7]['Q06'] = None
+    df[9]['Q06'] = None
+    df[11]['Q06'] = None
+    
+    temp = df[0]['P12'] 
+    temp2 = df[1]['P12']
+    temp3 = df[2]['P12']
+    temp4 = df[3]['P12']
+    temp5 = df[4]['P12']
+    df[6]['P12'] = temp
+    df[10]['P12'] = temp2
+    df[14]['P12']  = temp3
+    df[18]['P12'] = temp4
+    df[20]['P12'] = temp5
+    df[0]['P12'] = None
+    df[1]['P12'] = None
+    df[2]['P12'] = None
+    df[3]['P12'] = None
+    df[4]['P12'] = None
+    
+    temp = df[0]['Q12'] 
+    temp2 = df[1]['Q12']
+    temp3 = df[2]['Q12']
+    temp4 = df[3]['Q12']
+    temp5 = df[4]['Q12']
+    df[6]['Q12'] = temp
+    df[10]['Q12'] = temp2
+    df[14]['Q12']  = temp3
+    df[18]['Q12'] = temp4
+    df[20]['Q12'] = temp5
+    df[0]['Q12'] = None
+    df[1]['Q12'] = None
+    df[2]['Q12'] = None
+    df[3]['Q12'] = None
+    df[4]['Q12'] = None
+
     df.columns = days
     
     #Swap the order of the rows to better match MOS output
@@ -194,6 +303,114 @@ def GFSMOS(station):
     
     #Make a pandas dataframe from the dictionary and append the 
     df = pd.DataFrame.from_dict(dictionary, orient='index')
+    temp = df[0]['X/N']
+    temp2 = df[1]['X/N']
+    temp3 = df[2]['X/N']
+    temp4 = df[3]['X/N']
+    temp5 = df[4]['X/N']
+    df[6]['X/N'] = temp
+    df[10]['X/N'] = temp2
+    df[14]['X/N'] = temp3
+    df[18]['X/N'] = temp4
+    df[20]['X/N'] = temp5
+    df[0]['X/N'] = None
+    df[1]['X/N'] = None
+    df[2]['X/N'] = None
+    df[3]['X/N'] = None
+    df[4]['X/N'] = None
+
+    temp = df[0]['P06']
+    temp2 = df[1]['P06']
+    temp3 = df[2]['P06']
+    temp4 = df[3]['P06']
+    temp5 = df[4]['P06']
+    temp6 = df[5]['P06']
+    temp7 = df[6]['P06']
+    temp8 = df[7]['P06']
+    temp9 = df[8]['P06']
+    temp10 = df[9]['P06']
+    temp11 = df[10]['P06']    
+    df[2]['P06'] = temp
+    df[4]['P06'] = temp2 
+    df[6]['P06'] = temp3
+    df[8]['P06'] = temp4
+    df[10]['P06'] = temp5
+    df[12]['P06'] = temp6
+    df[14]['P06'] = temp7
+    df[16]['P06'] = temp8
+    df[18]['P06'] = temp9
+    df[19]['P06'] = temp10
+    df[20]['P06'] = temp11
+    df[0]['P06'] = None
+    df[1]['P06'] = None
+    df[3]['P06'] = None
+    df[5]['P06'] = None
+    df[7]['P06'] = None
+    df[9]['P06'] = None
+    df[11]['P06'] = None
+    
+    temp = df[0]['Q06']
+    temp2 = df[1]['Q06']
+    temp3 = df[2]['Q06']
+    temp4 = df[3]['Q06']
+    temp5 = df[4]['Q06']
+    temp6 = df[5]['Q06']
+    temp7 = df[6]['Q06']
+    temp8 = df[7]['Q06']
+    temp9 = df[8]['Q06']
+    temp10 = df[9]['Q06']
+    temp11 = df[10]['Q06']    
+    df[2]['Q06'] = temp
+    df[4]['Q06'] = temp2 
+    df[6]['Q06'] = temp3
+    df[8]['Q06'] = temp4
+    df[10]['Q06'] = temp5
+    df[12]['Q06'] = temp6
+    df[14]['Q06'] = temp7
+    df[16]['Q06'] = temp8
+    df[18]['Q06'] = temp9
+    df[19]['Q06'] = temp10
+    df[20]['Q06'] = temp11
+    df[0]['Q06'] = None
+    df[1]['Q06'] = None
+    df[3]['Q06'] = None
+    df[5]['Q06'] = None
+    df[7]['Q06'] = None
+    df[9]['Q06'] = None
+    df[11]['Q06'] = None
+    
+    temp = df[0]['P12'] 
+    temp2 = df[1]['P12']
+    temp3 = df[2]['P12']
+    temp4 = df[3]['P12']
+    temp5 = df[4]['P12']
+    df[6]['P12'] = temp
+    df[10]['P12'] = temp2
+    df[14]['P12']  = temp3
+    df[18]['P12'] = temp4
+    df[20]['P12'] = temp5
+    df[0]['P12'] = None
+    df[1]['P12'] = None
+    df[2]['P12'] = None
+    df[3]['P12'] = None
+    df[4]['P12'] = None
+    
+    temp = df[0]['Q12'] 
+    temp2 = df[1]['Q12']
+    temp3 = df[2]['Q12']
+    temp4 = df[3]['Q12']
+    temp5 = df[4]['Q12']
+    df[6]['Q12'] = temp
+    df[10]['Q12'] = temp2
+    df[14]['Q12']  = temp3
+    df[18]['Q12'] = temp4
+    df[20]['Q12'] = temp5
+    df[0]['Q12'] = None
+    df[1]['Q12'] = None
+    df[2]['Q12'] = None
+    df[3]['Q12'] = None
+    df[4]['Q12'] = None
+
     df.columns = days
     
     #Swap the order of the rows to better match MOS output
