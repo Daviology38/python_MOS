@@ -10,12 +10,13 @@ from getmos import NAMMOS, GFSMOS
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = GFSMOS('KBOS')
+df = GFSMOS('KFIT')
 df = df.T
 df = df.reset_index()
 df['HR'] = pd.to_numeric(df['HR']) -4
 
 df.TMP = pd.to_numeric(df.TMP)
+df.DPT = pd.to_numeric(df.DPT)
 
 i = 0 
 index = len(df.HR)
@@ -31,7 +32,7 @@ while i < index:
     i = i + 1
 df['dateandtime'] = df['index'].map(str) + ' '+  df['HR'].map(str)
 #df.HR = pd.to_numeric(df.HR)
-ax = df.plot(x='dateandtime',y='TMP',legend=False,grid=True)
+ax = df.plot(x='dateandtime',y=['TMP','DPT'],legend=False,grid=True,color=['r','b'])
 ax.set_xticks(range(len(df.HR)));
 ax.set_xticklabels(["%s" % item for item in df.dateandtime.tolist()], rotation=90);
 ax.set_title('3 Day Temperature Outlook')
